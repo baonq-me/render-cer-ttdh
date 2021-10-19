@@ -20,3 +20,5 @@ local-test.js
 build
 .DS_Store
 playground
+
+svg-generator/node_modules
