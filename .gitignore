@@ -22,5 +22,5 @@ build
 playground
 
 node_modules
-input
+input/*
 .idea
