@@ -12,5 +12,8 @@
     "dependencies": {
         "csvtojson": "^2.0.10",
         "fs": "^0.0.1-security"
+    },
+    "devDependencies": {
+        "shelljs": "^0.8.4"
     }
 }
