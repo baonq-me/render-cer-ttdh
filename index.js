@@ -25,23 +25,30 @@ const imageString = fs.readFileSync("./input/image.svg", { encoding: "utf-8" });
 getMembersObject((members) => {
     let renderErrors = [];
     members.map((member) => {
-        console.log(">>>>>>>>", "Render file: ", member.filename, "[Start]");
+        //console.log(">>>>>>>>", "Render file: ", member.filename, "[Start]");
+        const start = Date.now();
+
         let file = imageString;
         for (let key in member) {
             file = file.replace(`{{{${key}}}}`, member[key]);
         }
         try {
             fs.writeFileSync(`output/${member.filename}.svg`, file);
-            shell.exec(`./svg2pdf.sh output/${member.filename}.svg output/${member.filename}.pdf `);
-            shell.exec(`rm output/${member.filename}.svg`);
+            if (shell.exec(`./svg2pdf.sh output/${member.filename}.svg output/${member.filename}.pdf &> /dev/null`).code === 0)
+            {
+                const stop = Date.now()
+                console.log(`>>>>>>>> Render file: [${(stop - start)} ms] ${member.filename} [Success]`);
+            } else {
+                console.error(">>>>>>>>", "Render file: ",member.filename, "[Error]");
+            }
+            shell.rm(`output/${member.filename}.svg`);
 
-            console.log(">>>>>>>>", "Render file: ", member.filename, "[Success]");
         } catch (error) {
             renderErrors.push(member.filename);
-            console.error(">>>>>>>>", "Render file: ", member.filename, "[Error]");
+            console.error(">>>>>>>>", "Render file: ",member.filename, "[Error]");
         }
     });
-    console.log("Render success: ", members.length - renderErrors.length);
-    console.log("Render error: ", renderErrors.length);
+    console.log("Total success: ", members.length - renderErrors.length);
+    console.log("Total error: ", renderErrors.length);
     console.error(renderErrors);
 });
