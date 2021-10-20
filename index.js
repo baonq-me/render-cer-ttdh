@@ -23,7 +23,6 @@ const getMembersObject = (callback) => {
 console.log(">>>>>>>>>", "Read image file");
 const imageString = fs.readFileSync("./input/image.svg", { encoding: "utf-8" });
 getMembersObject((members) => {
-    let renderErrors = [];
     members.map((member) => {
         //console.log(">>>>>>>>", "Render file: ", member.filename, "[Start]");
         const start = Date.now();
@@ -34,21 +33,10 @@ getMembersObject((members) => {
         }
         try {
             fs.writeFileSync(`output/${member.filename}.svg`, file);
-            if (shell.exec(`./svg2pdf.sh output/${member.filename}.svg output/${member.filename}.pdf &> /dev/null`).code === 0)
-            {
-                const stop = Date.now()
-                console.log(`>>>>>>>> Render file: [${(stop - start)} ms] ${member.filename} [Success]`);
-            } else {
-                console.error(">>>>>>>>", "Render file: ",member.filename, "[Error]");
-            }
-            shell.rm(`output/${member.filename}.svg`);
-
+            shell.echo(`./svg2pdf.sh output/${member.filename}.svg output/${member.filename}.pdf`).toEnd("myqueue");
         } catch (error) {
             renderErrors.push(member.filename);
             console.error(">>>>>>>>", "Render file: ",member.filename, "[Error]");
         }
     });
-    console.log("Total success: ", members.length - renderErrors.length);
-    console.log("Total error: ", renderErrors.length);
-    console.error(renderErrors);
 });
