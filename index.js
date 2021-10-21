@@ -1,6 +1,7 @@
 const fs = require("fs");
 const csv = require("csvtojson");
 const shell = require('shelljs')
+const he = require('he')
 
 if (!fs.existsSync("./output")) {
     console.log(">>>>>>>>>", "Create folder output");
@@ -61,9 +62,9 @@ getMembersObject((members) => {
 
         let file = imageString;
         for (let key in member) {
-            file = file.replace(`{{{${key}}}}`, member[key]);
+            file = file.replace(`{{{${key}}}}`, he.encode(member[key]));
         }
-        const filename = `${member.mahs}_${capitalizeTheFirstLetterOfEachWord(nonAccentVietnamese(member.name)).replaceAll(' ','_')}`;
+        const filename = `${member.mahs}_${capitalizeTheFirstLetterOfEachWord(nonAccentVietnamese(member.name)).replaceAll(' ','_').replaceAll('.', '')}`;
         shell.echo(filename).toEnd("list_file.txt");
         try {
             fs.writeFileSync(`output/${filename}.svg`, file);
