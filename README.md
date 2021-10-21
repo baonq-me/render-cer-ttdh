@@ -2,6 +2,8 @@
 
 This program generates PDF files by combining data from a CSV file and an SVG design file.
 
+Tested on Macbook Pro M1 running macOS Big Sur 11.6 show that the program can render 4800 PDF files in approximately 16 minutes with 100% CPU load (25% CPU time is wasted for system, 100% fan speed, max temp is 82oC at normal room condition). Memory consumption is quite low and not noticeable. 
+
 ## 1. Input data
 
 Firstly, look at `input` folder. There are two sample files:
