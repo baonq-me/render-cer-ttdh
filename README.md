@@ -10,7 +10,7 @@ Firstly, look at `input` folder. There are two sample files:
 - `image.svg` - Certificate design in svg format
 - `members.csv` - Data to be generated
 
-If the designer gave you an `UTF-16` SVG file, use this command to convert to `UTF-8` SVG file which is supported by this program
+If the designer gave you an `UTF-16` SVG file, use this command to convert to `UTF-8` SVG file which is supported by this program ([read more](https://www.tecmint.com/convert-files-to-utf-8-encoding-in-linux))
 
 ```bash
 iconv -f UTF-16 -t UTF-8 image-utf16-input.svg > image-utf8-output.svg

@@ -17,6 +17,8 @@ fs.readdir("./input", (err, filenames) => {
     });
 });
 
+
+// Ref: https://gist.github.com/jarvisluong/f01e108e963092336f04c4b7dd6f7e45
 function nonAccentVietnamese(str) {
     str = str.toLowerCase();
 //     We can also use this instead of from line 11 to line 17
@@ -40,6 +42,7 @@ function nonAccentVietnamese(str) {
     return str;
 }
 
+// Ref: https://www.tutorialspoint.com/how-to-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript
 function capitalizeTheFirstLetterOfEachWord(words) {
     var separateWord = words.toLowerCase().split(' ');
     for (var i = 0; i < separateWord.length; i++) {
