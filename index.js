@@ -64,6 +64,7 @@ getMembersObject((members) => {
             file = file.replace(`{{{${key}}}}`, member[key]);
         }
         const filename = `${member.mahs}_${capitalizeTheFirstLetterOfEachWord(nonAccentVietnamese(member.name)).replaceAll(' ','_')}`;
+        shell.echo(filename).toEnd("list_file.txt");
         try {
             fs.writeFileSync(`output/${filename}.svg`, file);
             shell.echo(`./svg2pdf.sh output/${filename}.svg output/${filename}.pdf`).toEnd("myqueue");
