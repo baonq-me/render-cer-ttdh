@@ -4,11 +4,17 @@ This program generates PDF files by combining data from a CSV file and an SVG de
 
 ## 1. Input data
 
-Firstly, look at `input` folder. There are two files:
+Firstly, look at `input` folder. There are two sample files:
 - `image.svg` - Certificate design in svg format
 - `members.csv` - Data to be generated
 
-Secondly, install fonts inside folder `fonts` if `image.svg` is using them.
+If the designer gave you an `UTF-16` SVG file, use this command to convert to `UTF-8` SVG file which is supported by this program
+
+```bash
+iconv -f UTF-16 -t UTF-8 image-utf16-input.svg > image-utf8-output.svg
+```
+
+Secondly, install fonts inside folder `fonts` if your SVG file is using them.
 
 ## 2. Start thread pool
 
