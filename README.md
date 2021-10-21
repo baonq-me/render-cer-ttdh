@@ -26,6 +26,8 @@ After thread pool is started, a pipe named `myqueue` is created in the same fold
 
 ## 3. Start rendering 
 
+*Due to lacking off working time, I have to use this way to fully utilized CPU power. During my test on Macbook Pro M1 running macOS Big Sur 11.6 , 25% CPU time is wasted for `system`*
+
 Push command into pipe `myqueue` by running Nodejs program.
 
 ```bash
@@ -38,7 +40,7 @@ When pipelining command into `myqueue`, your CPU load should be increased.
 
 Currently, there is no way to known exactly that whenever the rendering task is finished then monitoring CPU load is the only acceptable solution.
 
-Output pdf files are placed in `output` folder.
+Output pdf files are placed in `output` folder. List of file name in order with `members.csv` is put in `list_file.txt`.
 
 Remember to stop thread pool by this command
 
