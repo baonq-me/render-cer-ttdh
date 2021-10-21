@@ -22,7 +22,6 @@ build
 playground
 
 node_modules
-input/*
 .idea
 batch1
 batch2
