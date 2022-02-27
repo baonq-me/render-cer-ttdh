@@ -67,7 +67,7 @@ getMembersObject((members) => {
         for (let key in member) {
             file = file.replace(`{{{${key}}}}`, he.encode(member[key]));
         }
-        const filename = `${member.mahs}_${capitalizeTheFirstLetterOfEachWord(nonAccentVietnamese(member.name)).replaceAll(' ','_').replaceAll('.', '')}`;
+        const filename = `${member.mahs}_${capitalizeTheFirstLetterOfEachWord(nonAccentVietnamese(member.name)).replace(/ /g,'_').replace(/\./g, '')}`;
         shell.echo(filename).toEnd("list_file.txt");
         try {
             fs.writeFileSync(`output/${filename}.svg`, file);
